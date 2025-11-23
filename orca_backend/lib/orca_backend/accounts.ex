@@ -4,6 +4,7 @@ defmodule OrcaBackend.Accounts do
   """
 
   import Ecto.Query, warn: false
+  alias Ecto.Changeset
   alias OrcaBackend.Repo
 
   alias OrcaBackend.Accounts.User
@@ -18,7 +19,10 @@ defmodule OrcaBackend.Accounts do
 
   """
   def list_users do
-    Repo.all(User)
+    # Repo.all(User)
+    with {:ok, flop} <- Flop.validate(%Flop{}, for: User) do
+      Flop.run(User, flop, for: User, repo: Repo)
+    end
   end
 
   @doc """

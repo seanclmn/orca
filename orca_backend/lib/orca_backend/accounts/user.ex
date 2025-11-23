@@ -2,10 +2,15 @@ defmodule OrcaBackend.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {
+    Flop.Schema,
+    filterable: [:name], sortable: [:name]
+  }
+
   schema "users" do
-    field :name, :string
-    field :email, :string
-    field :age, :integer
+    field(:name, :string)
+    field(:email, :string)
+    field(:age, :integer)
 
     timestamps(type: :utc_datetime)
   end
