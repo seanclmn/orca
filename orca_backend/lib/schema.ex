@@ -13,9 +13,16 @@ defmodule OrcaBackendWeb.Schema do
   end
 
   query do
-    @desc "Get all users"
-    field :users, list_of(:user) do
-      resolve(&Resolvers.Accounts.list_users/3)
+    # @desc "Get all users"
+    # connection field(:search_users), node_type: :user do
+    #   arg(:name, :string)
+    #   resolve(&Resolvers.Accounts.search_users/3)
+    # end
+
+    @desc "Get a user by ID"
+    field :user, :user do
+      arg(:id, non_null(:id))
+      resolve(&Resolvers.Accounts.fetch_user/3)
     end
   end
 end

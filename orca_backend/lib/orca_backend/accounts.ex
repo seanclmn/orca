@@ -18,7 +18,7 @@ defmodule OrcaBackend.Accounts do
       [%User{}, ...]
 
   """
-  def list_users do
+  def search_users do
     # Repo.all(User)
     with {:ok, flop} <- Flop.validate(%Flop{}, for: User) do
       Flop.run(User, flop, for: User, repo: Repo)
@@ -39,7 +39,12 @@ defmodule OrcaBackend.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def fetch_user(id) do
+    case Repo.get(User, id) do
+      nil -> {:ok, nil}
+      user -> {:ok, user}
+    end
+  end
 
   @doc """
   Creates a user.

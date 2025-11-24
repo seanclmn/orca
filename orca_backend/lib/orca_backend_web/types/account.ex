@@ -10,4 +10,10 @@ defmodule OrcaBackendWeb.Types.Account do
     field(:email, :string)
     field(:age, :integer)
   end
+
+  # connection field(:search_users, node_type: :user) do
+  #   arg(:name, :string)
+
+  #   resolve(OrcaBackendWeb.Resolvers.Accounts.list_users() / 3)
+  # end
 end
