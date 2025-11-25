@@ -2,7 +2,7 @@ defmodule OrcaBackend.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  # @primary_key {:id, :binary_id, autogenerate: true}
+  @primary_key {:id, :binary_id, autogenerate: true}
   @derive {
     Flop.Schema,
     filterable: [:name], sortable: [:name]
